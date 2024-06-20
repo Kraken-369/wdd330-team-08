@@ -13,16 +13,12 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-//Adding the new item to cart, cart needs to be an array.
-//Written by Nestor
 export function appendToCart(key, newItem) {
   var cart = getLocalStorage(key);
-
   if (cart === null) cart = [];
   cart.push(newItem);
   setLocalStorage(key, cart);
 }
-// set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
@@ -30,11 +26,9 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
-
 export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param)
-
   return product;
 }

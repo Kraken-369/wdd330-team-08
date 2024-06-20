@@ -2,8 +2,6 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  //Conditional to keep the .map being thrown if cart
-  //is empty.
   if (cartItems) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
@@ -11,7 +9,6 @@ function renderCartContents() {
     document.querySelector(".product-list").innerHTML = "Your cart is empty!";
   }
 }
-
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
@@ -30,5 +27,4 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
-
 renderCartContents();
