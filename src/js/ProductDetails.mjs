@@ -1,4 +1,4 @@
-import { appendToCart, setLocalStorage } from "./utils.mjs";
+import { appendToCart } from "./utils.mjs";
 
 /*
 * Basically copy and pasted the HTML content for each divider for this.
