@@ -18,10 +18,10 @@ export default defineConfig({
 
   server: {
     proxy: {
-      "/api": {
-        target: resolve(__dirname, "src/json"),
+      "/json": {
+        target: "./json",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "")
+        rewrite: (path) => path.replace(/^\/json/, "")
       }
     }
   }
