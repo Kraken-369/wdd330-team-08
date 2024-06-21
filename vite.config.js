@@ -21,7 +21,7 @@ export default defineConfig({
       "/json": {
         target: resolve(__dirname, "src/json"),
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/json/, ""),
+        pathRewrite: { "^/json": "" },
       }
     }
   }
