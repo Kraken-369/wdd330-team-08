@@ -19,9 +19,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/json": {
-        target: "./json",
+        target: resolve(__dirname, "src/json"),
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/json/, "")
+        rewrite: (path) => path.replace(/^\/json/, ""),
       }
     }
   }
