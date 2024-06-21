@@ -17,12 +17,6 @@ export default defineConfig({
   },
 
   server: {
-    proxy: {
-      "/api": {
-        target: resolve(__dirname, "src/json"),
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "")
-      }
-    }
-  }
+    assetsInclude: ["src/json/**/*"],
+  },
 });
