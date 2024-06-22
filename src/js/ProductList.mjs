@@ -1,3 +1,5 @@
+import {renderListWithTemplate} from "./utils.mjs";
+
 const productCardTemplate = (item) => `<list class="product-card">
   <a href="product_pages/?product=${item.Id}">
     <img src="${item.Image}" alt="${item.Name}" />
@@ -15,8 +17,7 @@ export default class ProductListing {
   }
 
   renderProductList(list) {
-    const htmlString = list.map(productCardTemplate);
-    this.listElement.insertAdjacentHTML("afterbegin", htmlString.join(""));
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 
   async init() {
