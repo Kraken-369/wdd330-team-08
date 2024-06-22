@@ -11,7 +11,6 @@ function renderCartContents() {
   }
 }
 function renderCartTotal() {
-  checkSection();
   const cartItems = getLocalStorage("so-cart");
   var subtotal = 0;
   var taxRate = .056;
@@ -25,13 +24,6 @@ function renderCartTotal() {
   <p>Total: $${subtotal + parseFloat(taxedTotal)}</p>
   `
   document.querySelector(".totals").innerHTML = totals;
-}
-function checkSection() {
-  let totalsSection = document.querySelector(".totals");
-  const section = `<section class=totals></section>`
-  if (!totalsSection) {
-    document.querySelector(".products").insertAdjacentHTML("afterend", section);
-  }
 }
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
