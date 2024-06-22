@@ -129,6 +129,7 @@ button {
   list-style-type: none;
   padding: 0;
 }
+/* Style for cart total */
 .totals {
   text-align: right;
   font-weight: 600;
