@@ -3,10 +3,34 @@ import { getLocalStorage } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (cartItems) {
+    renderCartTotal();
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
   } else {
     document.querySelector(".product-list").innerHTML = "Your cart is empty!";
+  }
+}
+function renderCartTotal() {
+  checkSection();
+  const cartItems = getLocalStorage("so-cart");
+  var subtotal = 0;
+  var taxRate = .056;
+  cartItems.map((item) => {
+    subtotal += parseFloat(item.FinalPrice);
+  })
+  var taxedTotal = parseFloat(subtotal * taxRate).toFixed(2);
+  const totals = `
+  <p>Subtotal: $${subtotal}</p>
+  <p>Taxes: $${taxedTotal}</p>
+  <p>Total: $${subtotal + parseFloat(taxedTotal)}</p>
+  `
+  document.querySelector(".totals").innerHTML = totals;
+}
+function checkSection() {
+  let totalsSection = document.querySelector(".totals");
+  const section = `<section class=totals></section>`
+  if (!totalsSection) {
+    document.querySelector(".products").insertAdjacentHTML("afterend", section);
   }
 }
 function cartItemTemplate(item) {
