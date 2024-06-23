@@ -10,14 +10,15 @@ const productCardTemplate = (item) => `<list class="product-card">
 </list>`;
 
 export default class ProductListing {
-  constructor(category, dataSource, listElement) {
+  constructor(category, dataSource, listElement, numItemsToDisplay = 4) {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.numItemsToDisplay = numItemsToDisplay;
   }
 
   renderProductList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+    renderListWithTemplate(productCardTemplate, this.listElement, list.slice(0, this.numItemsToDisplay));
   }
 
   async init() {
