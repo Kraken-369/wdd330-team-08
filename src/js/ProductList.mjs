@@ -6,6 +6,7 @@ const productCardTemplate = (item) => `<list class="product-card">
     <h3 class="card__brand">${item.Brand.Name}</h3>
     <h2 class="card__name">${item.Name}</h2>
     <p class="product-card__price">$${item.FinalPrice}</p>
+    ${item.SuggestedRetailPrice > item.FinalPrice ? `<p class="product-with-discount">Discount</p>` : ``}
   </a>
 </list>`;
 
