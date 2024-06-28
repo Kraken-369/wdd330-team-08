@@ -39,3 +39,23 @@ export const renderListWithTemplate = (templateFn, parentElement, list, position
     parentElement.innerHTML = "";
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
+
+export const renderWithTemplate = (templateFn, parentElement, data, callback) => {
+  parentElement.insertAdjacentHTML("afterbegin", templateFn);
+  if (callback)
+    callback(data)
+}
+export async function loadTemplate(path) {
+  const response = await fetch(path).then(toText => toText.text());
+  const template = document.createElement("template");
+  template.innerHTML = response;
+  return template;
+}
+export async function loadHeaderFooter() {
+  const headerTem = await loadTemplate("templates/header.html");
+  const footerTem = await loadTemplate("templates/footer.html");
+  const getHeader = document.querySelector("#header");
+  const getFooter = document.querySelector("#footer");
+  renderWithTemplate(headerTem, getHeader);
+  renderWithTemplate(footerTem, getFooter);
+}
