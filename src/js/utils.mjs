@@ -40,22 +40,21 @@ export const renderListWithTemplate = (templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
-export const renderWithTemplate = (templateFn, parentElement, data, callback) => {
-  parentElement.insertAdjacentHTML("afterbegin", templateFn);
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
   if (callback)
     callback(data)
 }
-export async function loadTemplate(path) {
-  const response = await fetch(path).then(toText => toText.text());
-  const template = document.createElement("template");
-  template.innerHTML = response;
+async function loadTemplate(path) {
+  const response = await fetch(path);
+  const template = await response.text();
   return template;
 }
 export async function loadHeaderFooter() {
-  const headerTem = await loadTemplate("templates/header.html");
-  const footerTem = await loadTemplate("templates/footer.html");
-  const getHeader = document.querySelector("#header");
-  const getFooter = document.querySelector("#footer");
+  const headerTem = await loadTemplate("/partials/header.html");
+  const footerTem = await loadTemplate("/partials/footer.html");
+  const getHeader = document.querySelector("#dyn-header");
+  const getFooter = document.querySelector("#dyn-footer");
   renderWithTemplate(headerTem, getHeader);
   renderWithTemplate(footerTem, getFooter);
 }
