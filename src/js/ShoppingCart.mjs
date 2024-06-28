@@ -1,6 +1,4 @@
 import { renderListWithTemplate } from "./utils.mjs";
-//TODO
-var quantityVar = 1;
 
 const productInCartTemplate = (item) => `
 <li class="cart-card divider">
@@ -11,7 +9,7 @@ const productInCartTemplate = (item) => `
         <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card_quantity">Quantity: ${quantityVar}</p>
+    <p class="cart-card__quantity">Quantity: 1</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>
 `;
