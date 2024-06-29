@@ -1,6 +1,8 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage } from "./utils.mjs";
 
-const productInCartTemplate = (item) => `
+function productInCartTemplate(item, quant = 1) {
+    const totalPrice = item.FinalPrice * quant;
+    const newItemTemplate = `
 <li class="cart-card divider">
     <a href="/product_pages/?product=${item.Id}" class="cart-card__image">
         <img src="${item.Image}" alt="${item.Name}"/>
@@ -9,22 +11,46 @@ const productInCartTemplate = (item) => `
         <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">Quantity: 1</p>
-    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <p class="cart-card__quantity">Quantity: ${quant}</p>
+    <p class="cart-card__price">$${totalPrice}</p>
 </li>
 `;
+return newItemTemplate;
+}
+
+function checkDuplicates(cart) {
+    const updatedCart = [];
+
+    cart.forEach(item => {
+        const duplicateItem = updatedCart.find(cartItem => cartItem.Id === item.Id);
+
+        if (duplicateItem) {
+            duplicateItem.quantity += 1;
+        } else {
+            updatedCart.push({ ...item, quantity: 1 })
+        }
+    });
+    return updatedCart.map(cartItem => productInCartTemplate(cartItem, cartItem.quantity)).join("");
+}
 
 export default class CartListing {
-    constructor(dataSource, listElement) {
-        this.dataSource = dataSource;
-        this.listElement = listElement;
+    constructor(key, parentElement) {
+        this.key = key;
+        this.parentElement = parentElement;
     }
-    renderCartList(list) {
-        renderListWithTemplate(productInCartTemplate, this.listElement, list);
+    renderCart() {
+        if (!this.checkCartEmpty()) {
+            const cartItems = getLocalStorage(this.key);
+            const cartHtml = checkDuplicates(cartItems);
+            document.querySelector(this.parentElement).innerHTML = cartHtml;
+        }
     }
-
-    async init() {
-        const list = await this.dataSource.getData();
-        this.renderCartList(list);
+    checkCartEmpty() {
+        const cartItems = getLocalStorage(this.key);
+        if (!cartItems || cartItems.length === 0) {
+            document.querySelector(".product-list").innerHTML = "<h4>Your cart is empty!</h4>";
+            return true;
+        }
+        return false;
     }
 }
