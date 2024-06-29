@@ -1,0 +1,11 @@
+.categories {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.categories > div {
+  flex: 1 1 25%;
+  padding: 20px;
+}
