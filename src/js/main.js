@@ -1,8 +1,8 @@
-// import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 // import ProductData from "./ProductData.mjs";
 // import ProductListing from "./ProductList.mjs";
 
-// loadHeaderFooter();
+loadHeaderFooter();
 
 // const product = "tents";
 // const dataSource = new ProductData(product);
