@@ -96,6 +96,34 @@ button {
 }
 /* End utility classes */
 
+/* Products listing */
+.products-grid {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  color: var(--dark-grey);
+  padding-left: 0;
+}
+.products-grid > li {
+  width: 150px;
+  padding: 0.5rem;
+  margin: 1em;
+}
+.products-grid h3 {
+  margin: 0;
+}
+.products-grid a {
+  text-decoration: none;
+}
+.products-grid a:link, .products-grid a:visited {
+  color: var(--dark-grey);
+}
+.products-grid a:hover {
+  text-decoration: underline;
+}
+
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
