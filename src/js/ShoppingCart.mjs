@@ -11,7 +11,14 @@ function productInCartTemplate(item, quant = 1) {
         <h2 class="card__name">${item.Name}</h2>
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-    <p class="cart-card__quantity">Quantity: ${quant}</p>
+    <div class="quantity-controller">
+        <p hidden class="grabItemId">${item.Id}</p>
+        <p hidden class="grabCategory">${item.Category}</p>
+        <button class="decrease-qty">-</button>
+        <p>Quantity: </p>
+        <span class="cart-card__quantity">${quant}</span>
+        <button class="increase-qty" id="addToCart">+</button>
+    </div>
     <p class="cart-card__price">$${totalPrice}</p>
 </li>
 `;
