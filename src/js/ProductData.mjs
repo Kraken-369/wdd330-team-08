@@ -11,7 +11,6 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    // this.path = baseURL + `products/search/${this.category}`;
   }
   getData(path) {
     return fetch(baseURL + path)
