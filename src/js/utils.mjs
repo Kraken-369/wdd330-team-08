@@ -15,9 +15,11 @@ export function setLocalStorage(key, data) {
 }
 export function appendToCart(key, newItem) {
   var cart = getLocalStorage(key);
-  if (cart === null) cart = [];
+  if (cart === null)
+    cart = [];
   cart.push(newItem);
   setLocalStorage(key, cart);
+  refreshHeader();
 }
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -40,6 +42,11 @@ export const renderListWithTemplate = (templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
+const getCartCounter = () => {
+  const cart = JSON.parse(localStorage.getItem("so-cart"));
+  return cart === null ? 0 : cart.length;
+}
+
 export const renderWithTemplate = (templateFn, parentElement, position = "afterbegin", clear = false) => {
   if (clear)
     parentElement.innerHTML = "";
@@ -60,7 +67,14 @@ export const loadHeaderFooter = async () => {
   const headerContent = document.querySelector("#header-content");
   const footerTemplate = await loadTemplate("/partials/footer.html");
   const footerContent = document.querySelector("#footer-content");
-
+  
   renderWithTemplate(headerTemplate, headerContent);
   renderWithTemplate(footerTemplate, footerContent);
+  refreshHeader();
+}
+
+const refreshHeader = () => {
+  const cartCounter = document.querySelector(".cart-counter");
+  
+  cartCounter.innerHTML = getCartCounter();
 }
