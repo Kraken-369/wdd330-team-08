@@ -1,0 +1,20 @@
+.cart img {
+  height: 25px;
+  width: 24px;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-counter {
+	background-color: #e5aa72;
+	border-radius: 50%;
+	color: #4e2286;
+	font-size: .7em;
+	font-weight: bold;
+	left: 10px;
+	padding: 3px 5px;
+	position: absolute;
+	top: 7px;
+}
