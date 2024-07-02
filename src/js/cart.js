@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -28,3 +28,4 @@ function cartItemTemplate(item) {
   return newItem;
 }
 renderCartContents();
+loadHeaderFooter();
