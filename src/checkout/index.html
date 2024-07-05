@@ -8,7 +8,8 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/new-features.css" />
     <script src="../js/checkout.js" type="module"></script>
   </head>
 
@@ -20,6 +21,64 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+      </section>
+      <section>
+        <form action="">
+          <div>
+            <h3>Customer Name</h3>
+            <div class="form-group">
+              <div class="label-group">
+                <label for="firstname">Firstname</label>
+                <input id="firstname" type="text" placeholder="Firstname">
+              </div>
+              <div class="label-group">
+                <label for="lastname">Lastname</label>
+                <input id="lastname" type="text" placeholder="Lastname">
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Address</h3>
+            <div class="form-group">
+              <div class="label-group">
+                <label for="city">City</label>
+                <input id="city" type="text" placeholder="City">
+              </div>
+              <div class="label-group">
+                <label for="state">State</label>
+                <input id="state" type="text" placeholder="State">
+              </div>
+              <div class="label-group">
+                <label for="zipcode">Zip Code</label>
+                <input id="zipcode" type="text" placeholder="Zip Code">
+              </div>
+              <div class="label-group">
+                <label for="address">Street Address</label>
+                <input id="address" type="text" placeholder="Street Address">
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Payment</h3>
+            <div class="form-group">
+              <div class="label-group">
+                <label for="creditnumber">Credit Card Number</label>
+                <input id="creditnumber" type="text" placeholder="0000-0000-0000-0000">
+              </div>
+              <div class="label-group">
+                <label for="expiration">Expiration Date</label>
+                <input id="expiration" type="text" placeholder="00/00">
+              </div>
+              <div class="label-group">
+                <label for="code">Security Code</label>
+                <input id="code" type="text" placeholder="000">
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button>Checkout</button>
+          </div>
+        </form>
       </section>
     </main>
 
