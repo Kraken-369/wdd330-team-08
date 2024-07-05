@@ -1,28 +1,28 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import {renderListWithTemplate} from "./utils.mjs";
 
-function createCard(product) {
-    return `
-<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
-        <img src="${product.Image}" alt="Image of ${product.Name}">
-        <h3 class="card__brand">${product.Brand.Name}</h3>
-        <h2 class="card__name">${product.Name}</h2>
-        <p class="product-card__price">$${product.FinalPrice}</p>
-    </a>
-</li>
-    `
-}
+const productCardTemplate = (item) => `<list class="product-card">
+  <a href="product_pages/?product=${item.Id}">
+    <img src="${item.Image}" alt="${item.Name}" />
+    <h3 class="card__brand">${item.Brand.Name}</h3>
+    <h2 class="card__name">${item.Name}</h2>
+    <p class="product-card__price">$${item.FinalPrice}</p>
+  </a>
+</list>`;
+
 export default class ProductListing {
-    constructor(category, dataSource, listElement) {
-        this.category = category;
-        this.dataSource = dataSource;
-        this.listElement = listElement;
-    }
-    async init() {
-        const list = await this.dataSource.getData();
-        this.renderList(list);
-    }
-    renderList(list) {
-        renderListWithTemplate(createCard, this.listElement, list);
-    }
+  constructor(category, dataSource, listElement, numItemsToDisplay = 4) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+    this.numItemsToDisplay = numItemsToDisplay;
+  }
+
+  renderProductList(list) {
+    renderListWithTemplate(productCardTemplate, this.listElement, list.slice(0, this.numItemsToDisplay));
+  }
+
+  async init() {
+    const list = await this.dataSource.getData();
+    this.renderProductList(list);
+  }
 }

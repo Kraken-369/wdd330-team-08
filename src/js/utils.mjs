@@ -32,10 +32,35 @@ export function getParams(param) {
   const product = urlParams.get(param)
   return product;
 }
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
-  const strings = list.map(templateFn);
-  if (clear) {
+
+export const renderListWithTemplate = (templateFn, parentElement, list, position = "afterbegin", clear = false) => {
+  const htmlString = list.map(templateFn);
+  if (clear)
     parentElement.innerHTML = "";
+  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+}
+
+export const renderWithTemplate = (templateFn, parentElement, position = "afterbegin", clear = false) => {
+  if (clear)
+    parentElement.innerHTML = "";
+  parentElement.insertAdjacentHTML(position, templateFn);
+}
+
+const loadTemplate = async path => {
+  const html = await fetch(path);
+
+  if (html.ok) {
+    const template = await html.text();
+    return template;
   }
-  parentElement.insertAdjacentHTML(position, strings.join(""));
+}
+
+export const loadHeaderFooter = async () => {
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const headerContent = document.querySelector("#header-content");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
+  const footerContent = document.querySelector("#footer-content");
+
+  renderWithTemplate(headerTemplate, headerContent);
+  renderWithTemplate(footerTemplate, footerContent);
 }
