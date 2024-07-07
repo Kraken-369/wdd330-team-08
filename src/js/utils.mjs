@@ -64,3 +64,12 @@ export const loadHeaderFooter = async () => {
   renderWithTemplate(headerTemplate, headerContent);
   renderWithTemplate(footerTemplate, footerContent);
 }
+
+export const formDataToJSON = formElement => {
+  const formData = new FormData(formElement);
+  const convertedJSON = {};
+
+  formData.forEach((value, key) => convertedJSON[key] = value);
+
+  return convertedJSON;
+}

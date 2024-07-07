@@ -23,17 +23,17 @@
         <h2>Review & Place your Order</h2>
       </section>
       <section>
-        <form action="">
+        <form name="checkout">
           <div>
             <h3>Customer Name</h3>
             <div class="form-group">
               <div class="label-group">
                 <label for="firstname">Firstname</label>
-                <input id="firstname" type="text" placeholder="Firstname">
+                <input id="firstname" name="firstname" type="text" placeholder="Firstname">
               </div>
               <div class="label-group">
                 <label for="lastname">Lastname</label>
-                <input id="lastname" type="text" placeholder="Lastname">
+                <input id="lastname" name="lastname" type="text" placeholder="Lastname">
               </div>
             </div>
           </div>
@@ -42,19 +42,19 @@
             <div class="form-group">
               <div class="label-group">
                 <label for="city">City</label>
-                <input id="city" type="text" placeholder="City">
+                <input id="city" name="city" type="text" placeholder="City">
               </div>
               <div class="label-group">
                 <label for="state">State</label>
-                <input id="state" type="text" placeholder="State">
+                <input id="state" name="state" type="text" placeholder="State">
               </div>
               <div class="label-group">
                 <label for="zipcode">Zip Code</label>
-                <input id="zipcode" type="text" placeholder="Zip Code">
+                <input id="zipcode" name="zipcode" type="text" placeholder="Zip Code">
               </div>
               <div class="label-group">
                 <label for="address">Street Address</label>
-                <input id="address" type="text" placeholder="Street Address">
+                <input id="address" name="address" type="text" placeholder="Street Address">
               </div>
             </div>
           </div>
@@ -63,15 +63,15 @@
             <div class="form-group">
               <div class="label-group">
                 <label for="creditnumber">Credit Card Number</label>
-                <input id="creditnumber" type="text" placeholder="No spaces or dashes!">
+                <input id="creditnumber" name="creditnumber" type="text" placeholder="No spaces or dashes!">
               </div>
               <div class="label-group">
                 <label for="expiration">Expiration Date</label>
-                <input id="expiration" type="text" placeholder="00/00">
+                <input id="expiration" name="expiration" type="text" placeholder="00/00">
               </div>
               <div class="label-group">
                 <label for="code">Security Code</label>
-                <input id="code" type="text" placeholder="000">
+                <input id="code" name="code" type="text" placeholder="000">
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
             
           </div>
           <div class="buttons">
-            <button>Checkout</button>
+            <button id="checkout">Checkout</button>
           </div>
         </form>
       </section>

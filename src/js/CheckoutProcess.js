@@ -1,4 +1,5 @@
-import { getLocalStorage } from "./utils.mjs";
+import { formDataToJSON, getLocalStorage } from "./utils.mjs";
+import { checkout } from "./ExternalServices.js";
 
 export default class CheckoutProcess {
   
@@ -42,7 +43,7 @@ export default class CheckoutProcess {
       </li>
       <li>
         <label for="tax">Tax</label>
-        <p id="tax">$ ${this.tax}</p>
+        <p id="tax">$ ${(this.itemTotal * this.tax).toFixed(2)}</p>
       </li>
       <li>
         <label for="orderTotal"><b>Order Total</b></label>
@@ -51,6 +52,34 @@ export default class CheckoutProcess {
     </ul>`;
 		
 		document.querySelector(`.${this.outputSelector}`).innerHTML = summary;
+	}
+
+	packageItems = () => {
+		const objectItems = this.list.map(item => ({
+				id: item.Id,
+				price: item.FinalPrice,
+				name: item.Name,
+				quantity: 1
+			}));
+		
+		return objectItems;
+	}
+
+	checkout = async () => {
+    const formInputs = document.forms["checkout"];
+		const json = formDataToJSON(formInputs);
+    
+		json.orderDate = new Date();
+    json.orderTotal = this.orderTotal;
+    json.tax = this.itemTotal * this.tax;
+    json.shipping = this.shipping;
+		json.items = this.packageItems();
+    try {
+      const res = await checkout(json);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
 	}
 
 }
