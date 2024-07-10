@@ -151,6 +151,19 @@ button {
 .product-card p {
   margin: 0.5em 0;
 }
+.product-card__price {
+  border: 2px solid var(--primary-color);
+  border-radius: 3px;
+  display: inline;
+  padding: 0.5em;
+  width: auto;
+}
+.product-old-price span {
+  color: #e00;
+  font-size: 0.85em;
+  font-weight: bold;
+  text-decoration: line-through;
+}
 
 .card__brand {
   font-size: var(--small-font);
