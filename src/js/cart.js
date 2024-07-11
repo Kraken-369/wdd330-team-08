@@ -21,12 +21,14 @@ function renderCartTotal() {
   const totals = `
   <p>Subtotal: $${subtotal}</p>
   <p>Taxes: $${taxedTotal}</p>
-  <p>Total: $${subtotal + parseFloat(taxedTotal)}</p>
+  <p>Total: $${(subtotal + parseFloat(taxedTotal)).toFixed(2)}</p>
   `
   document.querySelector(".totals").innerHTML = totals;
 }
-function cartItemTemplate(item) {
+
+const cartItemTemplate = item => {
   const newItem = `<li class="cart-card divider">
+  <span class="remove-icon">X</span>
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -43,5 +45,6 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
+
 renderCartContents();
 loadHeaderFooter();

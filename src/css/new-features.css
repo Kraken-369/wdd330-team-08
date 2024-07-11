@@ -26,3 +26,14 @@
 .buttons {
 	padding: 20px 0;
 }
+
+.remove-icon {
+	background-color: var(--tertiary-color);
+	border: 1px solid var(--primary-color);
+	border-radius: 3px;
+	color: var(--dark-grey);
+	cursor: pointer;
+	grid-row: 1/4;
+	font-weight: bolder;
+	padding: 5px;
+}
