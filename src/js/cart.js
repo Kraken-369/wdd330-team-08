@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, deleteItemById, loadHeaderFooter } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -28,7 +28,7 @@ function renderCartTotal() {
 
 const cartItemTemplate = item => {
   const newItem = `<li class="cart-card divider">
-  <span class="remove-icon">X</span>
+  <span class="remove-icon" id="${item.Id}">X</span>
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -45,6 +45,17 @@ const cartItemTemplate = item => {
 
   return newItem;
 }
+
+const removeNode = element => element.parentNode.remove(element);
+
+document.addEventListener("click", element => {
+  const button = element.target.closest(".remove-icon");
+
+  if (button) {
+    removeNode(document.getElementById(button.id));
+    deleteItemById("so-cart", button.id);
+  }
+});
 
 renderCartContents();
 loadHeaderFooter();

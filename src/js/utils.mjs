@@ -73,3 +73,10 @@ export const formDataToJSON = formElement => {
 
   return convertedJSON;
 }
+
+export const deleteItemById = (key, id) => {
+  let card = getLocalStorage(key);
+
+  card = card.filter(item => item.Id != id);
+  setLocalStorage(key, card);
+}
